@@ -15,7 +15,7 @@ int main()
 	mytree.insert(new TreeNode("Rufus Du Sol"));
 	mytree.print_inorder();
 
-	std::cout << std::endl;
+	std::cout << "\n\n";
 
 	std::cout << "Test tree construction via TreeNode." << std::endl;
 	TreeNode *CS = new TreeNode("What So Not");
@@ -23,14 +23,14 @@ int main()
 	mytree1.insert(new TreeNode("Baauer"));
 	mytree1.print_inorder();
 
-	std::cout << std::endl;
+	std::cout << "\n\n";
 
 	std::cout << "Test tree construction via string and insert via string." << std::endl;
 	ArtistTree mytree2{ "John Craigie" };
 	mytree2.insert("The Shook Twins");
 	mytree2.print_inorder();
 
-	std::cout << std::endl;
+	std::cout << "\n\n";
 
 	std::cout << "Test AlbumList with defualt constructor." << std::endl;
 	AlbumList mylist;
@@ -41,8 +41,21 @@ int main()
 	mylist.add_end(new ListNode(2018, "Room Inside the World"));
 	mylist.print();
 
-	std::cout << std::endl;
+	std::cout << "\n\n";
 
+	std::cout << "Test AlbumList with ListNode constructor." << std::endl;
+	AlbumList mylist1{ new ListNode(2018, "Scarecrow") };
+	mylist1.add_end(new ListNode(2018, "Opening for Steinbeck"));
+	mylist1.print();
+
+	std::cout << "\n\n";
+
+	std::cout << "Test AlbumList constructor and add_end with int/string argument." << std::endl;
+	AlbumList mylist2{ 2018, "Not All the Beautiful Things" };
+	mylist2.add_end(2018, "All Melody");
+	mylist2.print();
+
+	std::cout << "\n\n";
 
 	std::cin.get();
 }
