@@ -8,6 +8,9 @@ ArtistTree::ArtistTree() {};
 ArtistTree::ArtistTree(TreeNode* first)
 	: root{ first } {};
 
+ArtistTree::ArtistTree(std::string artist)
+	: root{ new TreeNode(artist) } {}
+
 void ArtistTree::insert(TreeNode* new_artist)
 {
 	TreeNode *temp = root;
@@ -42,6 +45,12 @@ void ArtistTree::insert(TreeNode* new_artist)
 	{
 		prev->right = new_artist;
 	}
+}
+
+void ArtistTree::insert(std::string artist)
+{
+	TreeNode *temp = new TreeNode(artist);
+	insert(temp);
 }
 
 TreeNode* ArtistTree::find(std::string name)

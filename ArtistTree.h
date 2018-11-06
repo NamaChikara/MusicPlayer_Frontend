@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 #include "AlbumList.h"
+#include "MusicData.h"
 
 class ArtistTree;
 
@@ -27,11 +28,14 @@ public:
 };
 
 class ArtistTree {
+	friend class MusicData;
 	TreeNode *root;
 public:
 	ArtistTree();
 	ArtistTree(TreeNode*);
-	void insert(TreeNode*);			// insert new artist into the tree
+	ArtistTree(std::string);
+	void insert(TreeNode*);			// insert new artist into the tree via TreeNode
+	void insert(std::string);		// insert new artist via string
 	TreeNode* find(std::string);	// find the TreeNode for a specified artist (if any)
 	void print_inorder(TreeNode*);	// if printing the subtree with argument as its base
 	void print_inorder();			// if printing the whole tree
