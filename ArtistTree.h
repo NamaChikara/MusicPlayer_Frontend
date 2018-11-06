@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <string>
+#include "AlbumList.h"
 
 class ArtistTree;
 
@@ -19,7 +20,8 @@ class TreeNode {
 	TreeNode *left;
 	TreeNode *right;
 	TreeNode *par;
-	//ListNode *album;	// doubly linked list of an artist's albums
+	//AlbumList *album;	// doubly linked list of an artist's albums; the pointer
+						//  stored in the TreeNode is the head of the list
 public:
 	TreeNode(std::string);
 };
@@ -30,6 +32,7 @@ public:
 	ArtistTree();
 	ArtistTree(TreeNode*);
 	void insert(TreeNode*);			// insert new artist into the tree
+	TreeNode* find(std::string);	// find the TreeNode for a specified artist (if any)
 	void print_inorder(TreeNode*);	// if printing the subtree with argument as its base
 	void print_inorder();			// if printing the whole tree
 };

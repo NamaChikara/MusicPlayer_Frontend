@@ -44,6 +44,27 @@ void ArtistTree::insert(TreeNode* new_artist)
 	}
 }
 
+TreeNode* ArtistTree::find(std::string name)
+{
+	TreeNode* temp = root;
+	while (temp)
+	{
+		if (temp->artist == name)
+		{
+			return temp;
+		}
+		else if (temp->artist < name)
+		{
+			temp = temp->left;
+		}
+		else
+		{
+			temp = temp->right;
+		}
+	}
+	return temp;	// temp is nullptr if no match found
+}
+
 void ArtistTree::print_inorder(TreeNode* start)
 {
 	if (start)
