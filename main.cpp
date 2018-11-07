@@ -2,6 +2,7 @@
 #include <string>
 #include "ArtistTree.h"
 #include "AlbumList.h"
+#include "MusicData.h"
 
 int main()
 {
@@ -54,6 +55,15 @@ int main()
 	AlbumList mylist2{ 2018, "Not All the Beautiful Things" };
 	mylist2.add_end(2018, "All Melody");
 	mylist2.print();
+
+	std::cout << "\n\n";
+
+	std::cout << "Test MusicData constructor, add_artist, and print member functions." << std::endl;
+
+	MusicData mymusic{ "Nils Frahm" };
+	mymusic.add_artist("Dirty Projectors");
+	mymusic.add_artist("Dirty Projectors");
+	mymusic.print_artists();
 
 	std::cout << "\n\n";
 
