@@ -3,84 +3,73 @@
 #include "ArtistTree.h"
 #include "AlbumList.h"
 #include "MusicData.h"
+#include <SFML/Graphics.hpp>
 
 int main()
 {
-	std::cout << "Test default tree constructor." << std::endl;
-	ArtistTree mytree;
-	mytree.print_inorder();
-	TreeNode* KM = new TreeNode("Kevin Morby");
-	mytree.insert(new TreeNode("Chrome Sparks"));
-	mytree.insert(new TreeNode("Kevin Morby"));
-	mytree.insert(new TreeNode("Bob Moses"));
-	mytree.insert(new TreeNode("Rufus Du Sol"));
-	mytree.print_inorder();
+	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
 
-	std::cout << "\n\n";
+	// Load font file for sf::Text objects
+	std::string font_file = "SourceSansPro.otf";	// font for Text Objects
+	sf::Font font;
 
-	std::cout << "Test tree construction via TreeNode." << std::endl;
-	TreeNode *CS = new TreeNode("What So Not");
-	ArtistTree mytree1{ CS };
-	mytree1.insert(new TreeNode("Baauer"));
-	mytree1.print_inorder();
+	if (!font.loadFromFile(font_file))
+	{
+		std::cerr << "Could not load " << font_file << " font file." << std::endl;
+		std::cin.get();
+		std::cin.get();
+	}
 
-	std::cout << "\n\n";
+	// create text object for displaying user input
+	sf::Text text;
+	text.setFont(font);
+	text.setCharacterSize(30);
+	text.setFillColor(sf::Color::Red);
+	std::string str;
+	text.setString("ABC");
 
-	std::cout << "Test tree construction via string and insert via string." << std::endl;
-	ArtistTree mytree2{ "John Craigie" };
-	mytree2.insert("The Shook Twins");
-	mytree2.print_inorder();
+	// create rectangle object for determining when to display user input
+	sf::RectangleShape rect(sf::Vector2f(100, 100));
+	bool isSelected = false;
 
-	std::cout << "\n\n";
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			switch (event.type)
+			{
+			case sf::Event::Closed:
+				window.close();
+				break;
+			case sf::Event::MouseButtonReleased:
+				if (event.key.code == sf::Mouse::Left
+					&& sf::Mouse::getPosition(window).x >= rect.getPosition().x
+					&& sf::Mouse::getPosition(window).x <= rect.getPosition().x + rect.getSize().x)
+				{
+					isSelected = !isSelected;
+				}
+				break;
+			case sf::Event::TextEntered:
+				if (isSelected)
+				{
+					// handle ASCII characters only
+					if (event.text.unicode < 128)
+					{
+						str += static_cast<char>(event.text.unicode);
+						text.setString(str);
+					}
+				}
+			}
+		}
 
-	std::cout << "Test AlbumList with defualt constructor." << std::endl;
-	AlbumList mylist;
-	mylist.print();
-	ListNode *CM = new ListNode(2017, "City Music");
-	mylist.add_end(CM);
-	mylist.add_end(new ListNode(2018, "Solace"));
-	mylist.add_end(new ListNode(2018, "Room Inside the World"));
-	mylist.print();
+		window.clear();
 
-	std::cout << "\n\n";
+		window.draw(rect);
+		window.draw(text);
 
-	std::cout << "Test AlbumList with ListNode constructor." << std::endl;
-	AlbumList mylist1{ new ListNode(2018, "Scarecrow") };
-	mylist1.add_end(new ListNode(2018, "Opening for Steinbeck"));
-	mylist1.print();
+		window.display();
+	}
 
-	std::cout << "\n\n";
-
-	std::cout << "Test AlbumList constructor and add_end with int/string argument." << std::endl;
-	AlbumList mylist2{ 2018, "Not All the Beautiful Things" };
-	mylist2.add_end(2018, "All Melody");
-	mylist2.print();
-
-	std::cout << "\n\n";
-
-	std::cout << "Test MusicData constructor, add_artist, and print member functions." << std::endl;
-
-	MusicData mymusic{ "Nils Frahm" };
-	mymusic.add_artist("Dirty Projectors");
-	mymusic.add_artist("Dirty Projectors");
-	mymusic.print_artists();
-
-	std::cout << "\n\n";
-
-	std::cout << "Test MusicData add_album and print_albums member functions." << std::endl;
-	MusicData mymusic1;
-	mymusic1.add_album("DuRan Jones", 2018, "Duran Jones and the Indications");
-	mymusic1.add_artist("Duran Jones");
-	mymusic1.add_album("Duran Jones", 2018, "Duran Jones and the Indications");
-	mymusic1.add_artist("DjM Trio");
-	mymusic1.add_album("DJM Tri", 2018, "Cave Art Pt. 2");
-	mymusic1.add_album("DjM Trio", 2018, "Cave Art Pt. 2");
-	mymusic1.add_album("DjM Trio", 2014, "Cave Art");
-	mymusic1.add_album("DjM Trio", 2010, "The Intrigue");
-	mymusic1.print_artists();
-	mymusic1.print_albums("Nils Frahm");
-	mymusic1.print_albums("Duran Jones");
-	mymusic1.print_albums("DjM Trio");
-	
-	std::cin.get();
+	return 0;
 }
