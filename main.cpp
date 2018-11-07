@@ -4,10 +4,11 @@
 #include "AlbumList.h"
 #include "MusicData.h"
 #include <SFML/Graphics.hpp>
+#include "GraphicsHelper.h"
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
 
 	// Load font file for sf::Text objects
 	std::string font_file = "SourceSansPro.otf";	// font for Text Objects
@@ -16,8 +17,6 @@ int main()
 	if (!font.loadFromFile(font_file))
 	{
 		std::cerr << "Could not load " << font_file << " font file." << std::endl;
-		std::cin.get();
-		std::cin.get();
 	}
 
 	// create text object for displaying user input
@@ -25,11 +24,14 @@ int main()
 	text.setFont(font);
 	text.setCharacterSize(30);
 	text.setFillColor(sf::Color::Red);
-	std::string str;
-	text.setString("ABC");
+	std::string artist_str;
 
 	// create rectangle object for determining when to display user input
-	sf::RectangleShape rect(sf::Vector2f(100, 100));
+	sf::RectangleShape artist_rect(sf::Vector2f(200, 50));
+	sf::RectangleShape input_rect(sf::Vector2f(50, 50));
+	sf::Vector2f offset = findPosition({ artist_rect });
+	input_rect.setPosition(offset);
+	input_rect.setFillColor(sf::Color::Blue);
 	bool isSelected = false;
 
 	while (window.isOpen())
@@ -44,8 +46,8 @@ int main()
 				break;
 			case sf::Event::MouseButtonReleased:
 				if (event.key.code == sf::Mouse::Left
-					&& sf::Mouse::getPosition(window).x >= rect.getPosition().x
-					&& sf::Mouse::getPosition(window).x <= rect.getPosition().x + rect.getSize().x)
+					&& sf::Mouse::getPosition(window).x >= input_rect.getPosition().x
+					&& sf::Mouse::getPosition(window).x <= input_rect.getPosition().x + input_rect.getSize().x)
 				{
 					isSelected = !isSelected;
 				}
@@ -56,8 +58,8 @@ int main()
 					// handle ASCII characters only
 					if (event.text.unicode < 128)
 					{
-						str += static_cast<char>(event.text.unicode);
-						text.setString(str);
+						artist_str += static_cast<char>(event.text.unicode);
+						text.setString(artist_str);
 					}
 				}
 			}
@@ -65,7 +67,8 @@ int main()
 
 		window.clear();
 
-		window.draw(rect);
+		window.draw(artist_rect);
+		window.draw(input_rect);
 		window.draw(text);
 
 		window.display();
