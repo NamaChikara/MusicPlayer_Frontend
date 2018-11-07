@@ -71,6 +71,10 @@ TreeNode* ArtistTree::find(std::string name)
 			temp = temp->right;
 		}
 	}
+	if (!temp)
+	{
+		std::cout << "Artist " << name << " not found." << std::endl;
+	}
 	return temp;	// temp is nullptr if no match found
 }
 
