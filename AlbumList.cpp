@@ -41,7 +41,7 @@ void AlbumList::print()
 {
 	if (!head)
 	{
-		std::cout << "List is empty -- nothing to print." << std::endl;
+		std::cout << "Album list is empty -- nothing to print." << std::endl;
 	}
 	else
 	{

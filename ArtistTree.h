@@ -19,6 +19,7 @@ class ArtistTree;
 
 class TreeNode {
 	friend class ArtistTree;
+	friend class MusicData;
 	std::string artist;
 	TreeNode *left;
 	TreeNode *right;

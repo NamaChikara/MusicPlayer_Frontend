@@ -19,6 +19,7 @@ public:
 };
 
 class AlbumList {
+	friend class MusicData;
 	ListNode *head;
 public:
 	AlbumList();
