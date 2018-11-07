@@ -11,7 +11,9 @@
 #include <iostream>
 #include <string>
 #include "AlbumList.h"
-#include "MusicData.h"
+
+class AlbumList;	// forward declare in order to have an AlbumList pointer
+					//  as a member of TreeNode
 
 class ArtistTree;
 
@@ -21,8 +23,7 @@ class TreeNode {
 	TreeNode *left;
 	TreeNode *right;
 	TreeNode *par;
-	//AlbumList *album;	// doubly linked list of an artist's albums; the pointer
-						//  stored in the TreeNode is the head of the list
+	AlbumList *album;	// points to a doubly linked list of an artist's albums
 public:
 	TreeNode(std::string);
 };
