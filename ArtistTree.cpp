@@ -62,7 +62,7 @@ TreeNode* ArtistTree::find(std::string name)
 		{
 			return temp;
 		}
-		else if (temp->artist < name)
+		else if (name < temp->artist)
 		{
 			temp = temp->left;
 		}
