@@ -67,5 +67,20 @@ int main()
 
 	std::cout << "\n\n";
 
+	std::cout << "Test MusicData add_album and print_albums member functions." << std::endl;
+	MusicData mymusic1;
+	mymusic1.add_album("DuRan Jones", 2018, "Duran Jones and the Indications");
+	mymusic1.add_artist("Duran Jones");
+	mymusic1.add_album("Duran Jones", 2018, "Duran Jones and the Indications");
+	mymusic1.add_artist("DjM Trio");
+	mymusic1.add_album("DJM Tri", 2018, "Cave Art Pt. 2");
+	mymusic1.add_album("DjM Trio", 2018, "Cave Art Pt. 2");
+	mymusic1.add_album("DjM Trio", 2014, "Cave Art");
+	mymusic1.add_album("DjM Trio", 2010, "The Intrigue");
+	mymusic1.print_artists();
+	mymusic1.print_albums("Nils Frahm");
+	mymusic1.print_albums("Duran Jones");
+	mymusic1.print_albums("DjM Trio");
+	
 	std::cin.get();
 }
