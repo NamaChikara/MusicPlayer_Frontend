@@ -15,11 +15,28 @@ class MusicData {
 	ArtistTree *artists;
 public:
 	MusicData();
-	MusicData(std::string);
+	MusicData(std::string);	// allow constuction from just an artist's name
 	MusicData(ArtistTree*);
-	void add_artist(std::string);
-	void add_album(std::string, int, std::string);
+
+	// adds the argument string to artists as a new TreeNode*
+	void add_artist(std::string);		
+
+	// searches artists for a TreeNode with the argument string;
+	//  returns nullptr if not found
+	TreeNode *get_artist(std::string);	
+
+	// searches artists for TreeNode *T with artist art; if found, checks if 
+	//  T->AlbumList is nullptr; if it is nullptr, make it point to a new AlbumList 
+	//  with (yr, alb) at its head -- otherwise, add (yr, alb) to the end of the 
+	//  existing AlbumList
+	void add_album(std::string art, int yr, std::string alb);	
+
+	// calls artists->print_inorder() if artists is not nullptr
 	void print_artists();
+
+	// searches artists for TreeNode *T with artist art; if found, prints the 
+	//  contents of T->AlbumList
+	void print_albums(std::string art);
 };
 
 #endif MUSICDATA_H
