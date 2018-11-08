@@ -50,6 +50,10 @@ int main()
 				{
 					myinput.clicked(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
 				}
+				else if (event.key.code == sf::Mouse::Right)
+				{
+					myinput.cleared(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
+				}
 				break;
 			case sf::Event::TextEntered:
 				// handle ASCII characters only
