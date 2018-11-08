@@ -23,7 +23,7 @@ public:
 	sf::Vector2f bottom_left();	
 
 	// identify which RectangleShape a click occured in (if any)
-	void clicked(sf::Vector2f&);
+	void clicked(sf::Vector2f);
 private:
 	sf::Font font;	// must load a font to draw Text objects
 	int charsize = 20;	// how large text should be

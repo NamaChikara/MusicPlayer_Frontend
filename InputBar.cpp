@@ -90,24 +90,28 @@ sf::Vector2f InputBar::bottom_left()
 	return botLeft(&artist_rect);
 }
 
-void InputBar::clicked(sf::Vector2f &click)
+void InputBar::clicked(sf::Vector2f click)
 {
 	if (clickRect(artist_rect, click))
 	{
 		artist_ent = true;
 		album_ent = false;
 		year_ent = false;
+		std::cout << "artist clicked" << std::endl;
 	}
 	else if (clickRect(album_rect, click))
 	{
 		artist_ent = false;
 		album_ent = true;
 		year_ent = false;
+		std::cout << "album clicked" << std::endl;
 	}
 	else if (clickRect(year_rect, click))
 	{
 		artist_ent = false;
 		album_ent = false;
 		year_ent = true;
+		std::cout << "year clicked" << std::endl;
 	}
 }
+
