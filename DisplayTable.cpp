@@ -1,6 +1,7 @@
 #include "DisplayTable.h"
 
-DisplayTable::DisplayTable(std::string font_file)
+DisplayTable::DisplayTable(std::string font_file, sf::Vector2f displace)
+	: displace{ displace }
 {
 	font.loadFromFile(font_file);
 }
@@ -13,6 +14,10 @@ void DisplayTable::update(std::vector<std::string> labels)
 	{
 		rects.push_back(new sf::RectangleShape(sf::Vector2f(200, 50)));
 		rects[i]->setFillColor(sf::Color::Black);
+		if (i == 0)
+		{
+			rects[i]->setPosition(displace);
+		}
 		if (i > 0)
 		{
 			rects[i]->setPosition(botLeft(rects[i - 1]));
