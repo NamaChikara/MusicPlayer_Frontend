@@ -94,22 +94,56 @@ void InputBar::clicked(sf::Vector2f click)
 {
 	// if click is not on any rect, set all to false
 	artist_ent = clickRect(artist_rect, click);
-	album_ent = clickRect(artist_rect, click);
+	album_ent = clickRect(album_rect, click);
 	year_ent = clickRect(year_rect, click);
 }
 
 void InputBar::input(char c)
 {
-	if (artist_ent)
+	// check if the backspace key was pressed
+	if (c == '\b')
 	{
-		artist_text.setString(artist_text.getString() + c);
+		if (artist_ent)
+		{
+			std::string str = artist_text.getString();
+			if (str.size() != 0)
+			{
+				str.erase(str.size() - 1, 1);
+				artist_text.setString(str);
+			}
+		}
+		else if (album_ent)
+		{
+			std::string str = album_text.getString();
+			if (str.size() != 0)
+			{
+				str.erase(str.size() - 1, 1);
+				album_text.setString(str);
+			}
+		}
+		else if (year_ent)
+		{
+			std::string str = year_text.getString();
+			if (str.size() != 0)
+			{
+				str.erase(str.size() - 1, 1);
+				year_text.setString(str);
+			}
+		}
 	}
-	else if (album_ent)
+	else
 	{
-		album_text.setString(album_text.getString() + c);
-	}
-	else if (year_ent)
-	{
-		year_text.setString(year_text.getString() + c);
+		if (artist_ent)
+		{
+			artist_text.setString(artist_text.getString() + c);
+		}
+		else if (album_ent)
+		{
+			album_text.setString(album_text.getString() + c);
+		}
+		else if (year_ent)
+		{
+			year_text.setString(year_text.getString() + c);
+		}
 	}
 }
