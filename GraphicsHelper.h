@@ -14,6 +14,9 @@
 //  (this function is usefull for drawing rectanlges side by side)
 sf::Vector2f topRight(sf::RectangleShape);
 
+// similar to topRight, this returns the coordinate of the bottom left corner
+sf::Vector2f botLeft(sf::RectangleShape*);
+
 // returns true if the point specified by the vector lies within the rectangle (border inclusive)
 bool clickRect(sf::RectangleShape, sf::Vector2i);
 
