@@ -110,6 +110,23 @@ void InputBar::clicked(sf::Vector2f click)
 	}
 }
 
+void InputBar::cleared(sf::Vector2f click)
+{
+	// if the click is on a rect, clear the appropriate text object
+	if (clickRect(artist_rect, click))
+	{
+		artist_text.setString("");
+	}
+	else if (clickRect(album_rect, click))
+	{
+		album_text.setString("");
+	}
+	else if (clickRect(year_rect, click))
+	{
+		year_text.setString("");
+	}
+}
+
 void InputBar::input(char c)
 {
 	// check if the backspace key was pressed

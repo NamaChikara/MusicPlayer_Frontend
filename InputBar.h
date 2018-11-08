@@ -23,8 +23,11 @@ public:
 	// find the bottom left corner of the InputBar
 	sf::Vector2f bottom_left();	
 
-	// identify which RectangleShape a click occured in (if any)
+	// activate text input within the RectangleShape a left click occured in
 	void clicked(sf::Vector2f);
+
+	// delete the text within a RectangleShape a right click occured in
+	void cleared(sf::Vector2f);
 
 	// add text to sf::Text object if its "xxx_ent" value is set to true
 	void input(char);
