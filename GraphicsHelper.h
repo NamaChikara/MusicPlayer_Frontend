@@ -12,7 +12,7 @@
 //  being the sum of the x-sizes of the rectangles plus the x-position of the first
 //  rectangle; the y being the y-position of the first
 //  (this function is usefull for drawing rectanlges side by side)
-sf::Vector2f findPosition(std::vector<sf::RectangleShape>);
+sf::Vector2f topRight(sf::RectangleShape);
 
 // returns true if the point specified by the vector lies within the rectangle (border inclusive)
 bool clickRect(sf::RectangleShape, sf::Vector2i);

@@ -38,12 +38,11 @@ int main()
 	sf::RectangleShape artist_rect(sf::Vector2f(200, 50));
 	// create a button to toggle whether or not input is accepted
 	sf::RectangleShape input_rect(sf::Vector2f(50, 50));
-	sf::Vector2f offset = findPosition({ artist_rect });
-	input_rect.setPosition(offset);
+	input_rect.setPosition(topRight(artist_rect));
 	input_rect.setFillColor(sf::Color::Blue);
 	// create a button to pass the input to the MusicData class
 	sf::RectangleShape enter_rect(sf::Vector2f(50, 50));
-	offset = findPosition({ artist_rect, input_rect });
+	offset = findPosition(topRight(input_rect));
 	enter_rect.setPosition(offset);
 	enter_rect.setFillColor(sf::Color::Red);
 
