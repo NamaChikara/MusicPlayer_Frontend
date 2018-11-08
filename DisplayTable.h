@@ -17,7 +17,7 @@ public:
 	DisplayTable(std::string, sf::Vector2f = sf::Vector2f{ 0,0 });
 
 	// new strings to display; one Text/RectangleShape for each string
-	void update(std::vector<std::string>);	
+	void update(std::vector<std::string>&);	
 
 	// override sf::Drawable's pure virtual function
 	virtual void draw(sf::RenderTarget&, sf::RenderStates = sf::RenderStates()) const;
