@@ -5,6 +5,7 @@
 #include "MusicData.h"
 #include <SFML/Graphics.hpp>
 #include "GraphicsHelper.h"
+#include "InputBar.h"
 
 int main()
 {
@@ -27,6 +28,28 @@ int main()
 		std::cerr << "Could not load " << font_file << " font file." << std::endl;
 	}
 
+	InputBar myinput{ font_file };
+
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			switch (event.type)
+			{
+			case sf::Event::Closed:
+				window.close();
+				break;
+			}
+		}
+
+		window.clear();
+
+		myinput.draw(window, sf::RenderStates());
+
+		window.display();
+	}
+	/*
 	// create text object for displaying user input
 	sf::Text input_text;
 	input_text.setFont(font);
@@ -42,8 +65,7 @@ int main()
 	input_rect.setFillColor(sf::Color::Blue);
 	// create a button to pass the input to the MusicData class
 	sf::RectangleShape enter_rect(sf::Vector2f(50, 50));
-	offset = findPosition(topRight(input_rect));
-	enter_rect.setPosition(offset);
+	enter_rect.setPosition(topRight(input_rect));
 	enter_rect.setFillColor(sf::Color::Red);
 
 	// create a place to display album names
@@ -119,6 +141,6 @@ int main()
 
 		window.display();
 	}
-
+	*/
 	return 0;
 }
