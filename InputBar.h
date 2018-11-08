@@ -21,6 +21,9 @@ public:
 
 	// find the bottom left corner of the InputBar
 	sf::Vector2f bottom_left();	
+
+	// identify which RectangleShape a click occured in (if any)
+	void clicked(sf::Vector2f&);
 private:
 	sf::Font font;	// must load a font to draw Text objects
 	int charsize = 20;	// how large text should be
@@ -46,6 +49,12 @@ private:
 	sf::RectangleShape year_rect;
 	sf::RectangleShape set_rect;
 	sf::RectangleShape get_rect;
+
+	// if true, then characters passed in get concatenated into the
+	//  respective text objects
+	bool artist_ent;
+	bool album_ent;
+	bool year_ent;
 
 	void place_rects();		// set the widths of the rectangles
 	void setup_texts();		// set Text objects' initial size/string parameters

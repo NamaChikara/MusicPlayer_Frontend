@@ -1,6 +1,7 @@
 #include "InputBar.h"
 
 InputBar::InputBar(std::string font_file)
+	: artist_ent{ false }, album_ent{ false }, year_ent{ false }
 {
 	font.loadFromFile(font_file);
 
@@ -87,4 +88,26 @@ void InputBar::text_locations()
 sf::Vector2f InputBar::bottom_left()
 {
 	return botLeft(&artist_rect);
+}
+
+void InputBar::clicked(sf::Vector2f &click)
+{
+	if (clickRect(artist_rect, click))
+	{
+		artist_ent = true;
+		album_ent = false;
+		year_ent = false;
+	}
+	else if (clickRect(album_rect, click))
+	{
+		artist_ent = false;
+		album_ent = true;
+		year_ent = false;
+	}
+	else if (clickRect(year_rect, click))
+	{
+		artist_ent = false;
+		album_ent = false;
+		year_ent = true;
+	}
 }
