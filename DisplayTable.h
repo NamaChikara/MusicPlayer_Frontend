@@ -19,7 +19,7 @@ public:
 	void update(std::vector<std::string>);	
 
 	// override sf::Drawable's pure virtual function
-	virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
+	virtual void draw(sf::RenderTarget&, sf::RenderStates = sf::RenderStates()) const;
 
 private:
 	sf::Font font;
