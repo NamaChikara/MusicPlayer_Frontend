@@ -11,10 +11,13 @@
 class InputBar : public sf::Drawable
 {
 public:
+	// NOTE: setting the constructor to ask for an sf::Font object instead
+	//  of asking for a string of the font file location causes the program 
+	//  to crash.
 	InputBar(std::string);
 
 	// override sf::Drawable's pure virtual function
-	virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
+	virtual void draw(sf::RenderTarget&, sf::RenderStates = sf::RenderStates()) const;
 
 private:
 	sf::Font font;	// must load a font to draw Text objects
