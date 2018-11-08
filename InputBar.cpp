@@ -83,3 +83,8 @@ void InputBar::text_locations()
 	set_text.setPosition(set_rect.getPosition() + sf::Vector2f(hoffset, voffset));
 	get_text.setPosition(get_rect.getPosition() + sf::Vector2f(hoffset, voffset));
 }
+
+sf::Vector2f InputBar::bottom_left()
+{
+	return botLeft(&artist_rect);
+}

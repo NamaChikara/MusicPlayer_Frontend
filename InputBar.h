@@ -19,6 +19,8 @@ public:
 	// override sf::Drawable's pure virtual function
 	virtual void draw(sf::RenderTarget&, sf::RenderStates = sf::RenderStates()) const;
 
+	// find the bottom left corner of the InputBar
+	sf::Vector2f bottom_left();	
 private:
 	sf::Font font;	// must load a font to draw Text objects
 	int charsize = 20;	// how large text should be
