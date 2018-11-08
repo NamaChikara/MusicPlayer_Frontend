@@ -18,6 +18,6 @@ sf::Vector2f topRight(sf::RectangleShape&);
 sf::Vector2f botLeft(sf::RectangleShape*);
 
 // returns true if the point specified by the vector lies within the rectangle (border inclusive)
-bool clickRect(sf::RectangleShape&, sf::Vector2f);
+bool clickRect(sf::RectangleShape&, sf::Vector2f&);
 
 #endif
