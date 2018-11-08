@@ -115,3 +115,18 @@ void InputBar::clicked(sf::Vector2f click)
 	}
 }
 
+void InputBar::input(char c)
+{
+	if (artist_ent)
+	{
+		artist_text.setString(artist_text.getString() + c);
+	}
+	else if (album_ent)
+	{
+		album_text.setString(album_text.getString() + c);
+	}
+	else if (year_ent)
+	{
+		year_text.setString(year_text.getString() + c);
+	}
+}

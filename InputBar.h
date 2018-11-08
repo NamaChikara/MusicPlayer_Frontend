@@ -24,6 +24,9 @@ public:
 
 	// identify which RectangleShape a click occured in (if any)
 	void clicked(sf::Vector2f);
+
+	// add text to sf::Text object if its "xxx_ent" value is set to true
+	void input(char);
 private:
 	sf::Font font;	// must load a font to draw Text objects
 	int charsize = 20;	// how large text should be
