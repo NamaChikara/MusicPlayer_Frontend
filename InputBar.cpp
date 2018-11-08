@@ -115,9 +115,11 @@ void InputBar::input(char c)
 	// check if the backspace key was pressed
 	if (c == '\b')
 	{
+		// determine which field is active
 		if (artist_ent)
 		{
 			std::string str = artist_text.getString();
+			// make sure string is nonempty before attempting to delete
 			if (str.size() != 0)
 			{
 				str.erase(str.size() - 1, 1);
@@ -145,6 +147,7 @@ void InputBar::input(char c)
 	}
 	else
 	{
+		// add character to the active field
 		if (artist_ent)
 		{
 			artist_text.setString(artist_text.getString() + c);
@@ -156,7 +159,7 @@ void InputBar::input(char c)
 		else if (year_ent)
 		{
 			// make sure input is a digit and year length is valid
-			if (isdigit(c) && year_text.getString().getSize() < 5)
+			if (isdigit(c) && year_text.getString().getSize() < 4)
 			{
 				year_text.setString(year_text.getString() + c);
 			}
@@ -166,8 +169,10 @@ void InputBar::input(char c)
 
 void InputBar::process_set()
 {
+	// if no album text entered, assume we are adding an artist
 	if (album_text.getString() == "")
 	{
+		// make sure artist field is nonempty before adding
 		if (artist_text.getString() != "")
 		{
 			mymusic.add_artist(artist_text.getString());
@@ -175,6 +180,7 @@ void InputBar::process_set()
 	}
 	else
 	{
+		// artist field must be nonempty to add an album
 		if (artist_text.getString() != "")
 		{
 			int year = 0; // default year value
