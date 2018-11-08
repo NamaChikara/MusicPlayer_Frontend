@@ -26,14 +26,14 @@ void InputBar::draw(sf::RenderTarget& target, sf::RenderStates) const
 
 void InputBar::place_rects()
 {
-	artist_rect.setSize(sf::Vector2f{ 100,rect_height });
+	artist_rect.setSize(sf::Vector2f{ 200,rect_height });
 	artist_rect.setFillColor(sf::Color::Blue);
 
-	album_rect.setSize(sf::Vector2f{ 100,rect_height });
+	album_rect.setSize(sf::Vector2f{ 200,rect_height });
 	album_rect.setPosition(topRight(artist_rect));
 	album_rect.setFillColor(sf::Color::Red);
 
-	year_rect.setSize(sf::Vector2f{ 75,rect_height });
+	year_rect.setSize(sf::Vector2f{ 100,rect_height });
 	year_rect.setPosition(topRight(album_rect));
 	year_rect.setFillColor(sf::Color::Blue);
 
