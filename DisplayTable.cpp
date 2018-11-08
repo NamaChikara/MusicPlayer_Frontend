@@ -23,7 +23,14 @@ void DisplayTable::update(std::vector<std::string> labels)
 	}
 }
 
-void DisplayTable::draw(sf::RenderTarget&, sf::RenderStates) const
+void DisplayTable::draw(sf::RenderTarget& target, sf::RenderStates) const
 {
-
+	for (sf::RectangleShape *rect : rects)
+	{
+		target.draw(*rect);
+	}
+	for (sf::Text *text : texts)
+	{
+		target.draw(*text);
+	}
 }
