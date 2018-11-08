@@ -45,6 +45,24 @@ int main()
 			case sf::Event::Closed:
 				window.close();
 				break;
+			case sf::Event::MouseButtonReleased:
+				if (event.key.code == sf::Mouse::Left)
+				{
+					myinput.clicked(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
+				}
+				break;
+				/*
+			case sf::Event::TextEntered:
+				if (true)
+				{
+					// handle ASCII characters only
+					if (event.text.unicode < 128)
+					{
+						artist_str += static_cast<char>(event.text.unicode);
+						input_text.setString(artist_str);
+					}
+				}
+				*/
 			}
 		}
 
