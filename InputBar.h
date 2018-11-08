@@ -65,8 +65,12 @@ private:
 	void setup_texts();		// set Text objects' initial size/string parameters
 	void text_locations();   // set texts within the rectangles
 
+	// linking set and get buttons to MusicData
 	void process_set();		// if the set_rect is clicked, check values of text
 							//  objects and take appropriate action on MusicData object
+	void process_get();		// if the get_rect is clicked and artist_text is nonempty,
+							//  print the albums of that artist. otherwise, print all 
+							//  artists
 };
 
 

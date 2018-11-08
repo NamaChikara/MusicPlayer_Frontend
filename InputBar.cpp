@@ -106,7 +106,7 @@ void InputBar::clicked(sf::Vector2f click)
 	// if click is on get_rect, print MusicData
 	if (clickRect(get_rect, click))
 	{
-		mymusic.print_artists();
+		process_get();
 	}
 }
 
@@ -194,5 +194,20 @@ void InputBar::process_set()
 			mymusic.add_album(artist_text.getString(),
 				year, album_text.getString());
 		}
+	}
+}
+
+void InputBar::process_get()
+{
+	std::string artist = artist_text.getString();
+	// if artist is nonempty, print their albums if they exist
+	if (artist != "")
+	{
+		mymusic.print_albums(artist);
+	}
+	// otherwise, print a list of stored artists
+	else
+	{
+		mymusic.print_artists();
 	}
 }
