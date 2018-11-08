@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include "GraphicsHelper.h"
 #include "InputBar.h"
+#include "DisplayTable.h"
 
 int main()
 {
@@ -29,6 +30,10 @@ int main()
 	}
 
 	InputBar myinput{ font_file };
+	DisplayTable mytable{ font_file };
+	std::vector<std::string> titles = { "Wish You Were Here",
+		"Dark Side Of The Moon", "Animals", "The Wall" };
+	mytable.update(titles);
 
 	while (window.isOpen())
 	{
@@ -45,7 +50,8 @@ int main()
 
 		window.clear();
 
-		myinput.draw(window);
+		//myinput.draw(window);
+		mytable.draw(window);
 
 		window.display();
 	}
