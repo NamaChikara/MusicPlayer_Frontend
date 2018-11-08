@@ -1,7 +1,7 @@
 #include "InputBar.h"
 
-InputBar::InputBar(std::string font_file)
-	: artist_ent{ false }, album_ent{ false }, year_ent{ false }
+InputBar::InputBar(std::string font_file, MusicData mm)
+	: mymusic{ mm }, artist_ent {false}, album_ent{ false }, year_ent{ false }
 {
 	font.loadFromFile(font_file);
 
@@ -96,6 +96,18 @@ void InputBar::clicked(sf::Vector2f click)
 	artist_ent = clickRect(artist_rect, click);
 	album_ent = clickRect(album_rect, click);
 	year_ent = clickRect(year_rect, click);
+	
+	// if click is on set_rect, pass strings to MusicData
+	if (clickRect(set_rect, click))
+	{
+		process_set();
+	}
+
+	// if click is on get_rect, print MusicData
+	if (clickRect(get_rect, click))
+	{
+		mymusic.print_artists();
+	}
 }
 
 void InputBar::input(char c)
@@ -143,7 +155,38 @@ void InputBar::input(char c)
 		}
 		else if (year_ent)
 		{
-			year_text.setString(year_text.getString() + c);
+			// make sure input is a digit and year length is valid
+			if (isdigit(c) && year_text.getString().getSize() < 5)
+			{
+				year_text.setString(year_text.getString() + c);
+			}
+		}
+	}
+}
+
+void InputBar::process_set()
+{
+	if (album_text.getString() == "")
+	{
+		if (artist_text.getString() != "")
+		{
+			mymusic.add_artist(artist_text.getString());
+		}
+	}
+	else
+	{
+		if (artist_text.getString() != "")
+		{
+			int year = 0; // default year value
+			// update year value if year_text is nonempty
+			if (year_text.getString().getSize() > 0)
+			{
+				std::string year_str = year_text.getString();
+				// stoi takes a string of digits as input and returns an it
+				year = std::stoi(year_str);
+			}
+			mymusic.add_album(artist_text.getString(),
+				year, album_text.getString());
 		}
 	}
 }
