@@ -1,7 +1,7 @@
 #include "GraphicsHelper.h"
 #include <SFML/Graphics.hpp>
 
-sf::Vector2f topRight(sf::RectangleShape rect)
+sf::Vector2f topRight(sf::RectangleShape &rect)
 {
 	float xpos = rect.getPosition().x + rect.getSize().x;
 	float ypos = rect.getPosition().y;
@@ -15,7 +15,7 @@ sf::Vector2f botLeft(sf::RectangleShape *rect)
 	return sf::Vector2f{ xpos,ypos };
 }
 
-bool clickRect(sf::RectangleShape rect, sf::Vector2i click)
+bool clickRect(sf::RectangleShape &rect, sf::Vector2f &click)
 {
 	return (rect.getPosition().x <= click.x
 		&& click.x <= rect.getPosition().x + rect.getSize().x
