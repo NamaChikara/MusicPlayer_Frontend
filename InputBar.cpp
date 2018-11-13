@@ -223,12 +223,16 @@ void InputBar::process_get()
 	// if artist is nonempty, print their albums if they exist
 	if (artist != "")
 	{
-		mymusic.print_albums(artist);
+		std::vector<std::string> ss = mymusic.get_album_strings(artist);
+		mytable.update(ss);
+		for (std::string a : ss)
+		{
+			std::cout << a << '\t';
+		}
 	}
 	// otherwise, print a list of stored artists
 	else
 	{
-		mymusic.print_artists();
 		std::vector<std::string> ss = mymusic.get_artist_strings();
 		mytable.update(ss);
 	}
