@@ -37,6 +37,10 @@ public:
 	// searches artists for TreeNode *T with artist art; if found, prints the 
 	//  contents of T->AlbumList
 	void print_albums(std::string art);
+
+	// return a vector with alphabetized artist names from the ArtistTree
+	//  (used for printing within the graphics interface)
+	std::vector<std::string> get_artist_strings();
 };
 
 #endif MUSICDATA_H

@@ -85,3 +85,8 @@ void MusicData::print_albums(std::string artist)
 		}
 	}
 }
+
+std::vector<std::string> MusicData::get_artist_strings()
+{
+	return artists->get_strings();
+}
