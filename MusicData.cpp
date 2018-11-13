@@ -95,8 +95,11 @@ std::vector<std::string> MusicData::get_album_strings(std::string artist)
 	std::vector<std::string> albums;
 	TreeNode *temp = get_artist(artist);
 	if (temp)
-	{
-		albums = temp->album->get_strings();
+	{ 
+		if (temp->album)
+		{
+			albums = temp->album->get_strings();
+		}
 	}
 	return albums;
 }
