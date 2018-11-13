@@ -29,8 +29,9 @@ int main()
 		std::cerr << "Could not load " << font_file << " font file." << std::endl;
 	}
 
-	InputBar myinput{ font_file };
-	DisplayTable mytable{ font_file, myinput.bottom_left() };
+	DisplayTable mytable{ font_file };
+	InputBar myinput{ font_file, mytable  };
+
 	std::vector<std::string> titles = { "Wish You Were Here",
 		"Dark Side Of The Moon", "Animals", "The Wall" };
 	mytable.update(titles);
@@ -68,7 +69,6 @@ int main()
 		window.clear();
 
 		myinput.draw(window);
-		mytable.draw(window);
 
 		window.display();
 	}

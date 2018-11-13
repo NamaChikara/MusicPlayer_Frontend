@@ -8,6 +8,7 @@ InputBar::InputBar(std::string font_file, DisplayTable tt, MusicData mm)
 	place_rects();
 	setup_texts();
 	text_locations();
+	mytable.set_displace(bottom_left());
 }
 
 void InputBar::draw(sf::RenderTarget& target, sf::RenderStates) const
@@ -23,6 +24,8 @@ void InputBar::draw(sf::RenderTarget& target, sf::RenderStates) const
 	target.draw(year_text);
 	target.draw(set_text);
 	target.draw(get_text);
+
+	mytable.draw(target);
 }
 
 void InputBar::place_rects()
