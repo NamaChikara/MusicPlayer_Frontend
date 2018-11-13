@@ -72,12 +72,5 @@ int main()
 
 		window.display();
 	}
-	// test ability to get vector of artist name strings
-	std::vector<std::string> astring = mymusic1.get_artist_strings();
-	for (std::string a : astring)
-	{
-		std::cout << a << '\t';
-	}
-	std::cin.get();
 	return 0;
 }
