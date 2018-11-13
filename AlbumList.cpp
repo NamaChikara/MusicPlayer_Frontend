@@ -45,7 +45,7 @@ void AlbumList::print()
 	}
 	else
 	{
-		ListNode* temp = head;
+		ListNode *temp = head;
 		while (temp)
 		{
 			std::cout << "(" << temp->title << ", "
@@ -53,4 +53,24 @@ void AlbumList::print()
 			temp = temp->next;
 		}
 	}
+}
+
+void AlbumList::strings_inorder()
+{
+	if (head)
+	{
+		ListNode *temp = head;
+		while (temp)
+		{
+			albums.push_back(temp->title);
+			temp = temp->next;
+		}
+	}
+}
+
+std::vector<std::string> AlbumList::get_strings()
+{
+	albums.clear();		// clear the storage vector for new call to get_strings()
+	strings_inorder();	// update albums
+	return albums;
 }

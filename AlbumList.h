@@ -3,6 +3,7 @@
 #ifndef ALBUMLIST_H
 #define ALBUMLIST_H
 
+#include <vector>
 #include <string>
 #include "ArtistTree.h"
 
@@ -21,6 +22,10 @@ public:
 class AlbumList {
 	friend class MusicData;
 	ListNode *head;
+	// capability to return vector of album names for graphics interface
+	std::vector<std::string> albums; // for storage in call to strings_inorder/get_strings
+	void strings_inorder();			
+	std::vector<std::string> get_strings();
 public:
 	AlbumList();
 	AlbumList(ListNode*);
