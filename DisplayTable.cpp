@@ -6,7 +6,7 @@ DisplayTable::DisplayTable(std::string font_file, sf::Vector2f displace)
 	font.loadFromFile(font_file);
 }
 
-void DisplayTable::update(std::vector<std::string> labels)
+void DisplayTable::update(std::vector<std::string> &labels)
 {
 	texts.clear();
 	rects.clear();
@@ -26,6 +26,11 @@ void DisplayTable::update(std::vector<std::string> labels)
 		texts[i]->setFillColor(sf::Color::White);
 		texts[i]->setPosition(rects[i]->getPosition());
 	}
+}
+
+void DisplayTable::set_displace(sf::Vector2f disp)
+{
+	displace = disp;
 }
 
 void DisplayTable::draw(sf::RenderTarget& target, sf::RenderStates) const

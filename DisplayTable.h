@@ -19,9 +19,11 @@ public:
 	// new strings to display; one Text/RectangleShape for each string
 	void update(std::vector<std::string>&);	
 
+	// set where the top left of the table should be
+	void set_displace(sf::Vector2f);
+
 	// override sf::Drawable's pure virtual function
 	virtual void draw(sf::RenderTarget&, sf::RenderStates = sf::RenderStates()) const;
-
 private:
 	sf::Font font;			// for sf::Text objects
 	float charsize = 20;	// text height
