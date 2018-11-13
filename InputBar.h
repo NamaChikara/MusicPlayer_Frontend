@@ -8,6 +8,7 @@
 #include <iostream>
 #include "GraphicsHelper.h"
 #include "MusicData.h"
+#include "DisplayTable.h"
 
 class InputBar : public sf::Drawable
 {
@@ -15,7 +16,7 @@ public:
 	// NOTE: setting the constructor to ask for an sf::Font object instead
 	//  of asking for a string of the font file location causes the program 
 	//  to crash.
-	InputBar(std::string, MusicData = MusicData());
+	InputBar(std::string, DisplayTable, MusicData = MusicData());
 
 	// override sf::Drawable's pure virtual function
 	virtual void draw(sf::RenderTarget&, sf::RenderStates = sf::RenderStates()) const;
@@ -32,7 +33,8 @@ public:
 	// add text to sf::Text object if its "xxx_ent" value is set to true
 	void input(char);
 private:
-	MusicData mymusic;
+	DisplayTable mytable;	// where calls to the "get" button display the results
+	MusicData mymusic;		// where user input is stored
 	sf::Font font;			// must load a font to draw Text objects
 	int charsize = 20;		// how large text should be
 	float rect_height = 50;	// how tall the RectangleShapes are
@@ -72,8 +74,8 @@ private:
 	void process_set();		// if the set_rect is clicked, check values of text
 							//  objects and take appropriate action on MusicData object
 	void process_get();		// if the get_rect is clicked and artist_text is nonempty,
-							//  print the albums of that artist. otherwise, print all 
-							//  artists
+							//  load the albums of that artist to mytable. otherwise load
+							//  all artists to mytable.
 };
 
 

@@ -1,7 +1,7 @@
 #include "InputBar.h"
 
-InputBar::InputBar(std::string font_file, MusicData mm)
-	: mymusic{ mm }, artist_ent {false}, album_ent{ false }, year_ent{ false }
+InputBar::InputBar(std::string font_file, DisplayTable tt, MusicData mm)
+	: mytable{ tt }, mymusic {mm}, artist_ent{ false }, album_ent{ false }, year_ent{ false }
 {
 	font.loadFromFile(font_file);
 
@@ -226,5 +226,7 @@ void InputBar::process_get()
 	else
 	{
 		mymusic.print_artists();
+		std::vector<std::string> ss = mymusic.get_artist_strings();
+		mytable.update(ss);
 	}
 }
