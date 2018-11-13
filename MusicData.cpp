@@ -1,6 +1,6 @@
 #include "MusicData.h"
 
-MusicData::MusicData() 
+MusicData::MusicData()
 	: artists{ new ArtistTree } {};
 
 MusicData::MusicData(std::string artist)
@@ -44,13 +44,12 @@ TreeNode *MusicData::get_artist(std::string artist)
 	}
 }
 
-
 void MusicData::add_album(std::string artist, int year, std::string album)
 {
 	TreeNode *temp = get_artist(artist);
 	// check that the artist was found
 	if (temp)
-	{	
+	{
 		// if there is already a pointer to an album list, add to that list
 		if (temp->album)
 		{
@@ -89,4 +88,15 @@ void MusicData::print_albums(std::string artist)
 std::vector<std::string> MusicData::get_artist_strings()
 {
 	return artists->get_strings();
+}
+
+std::vector<std::string> MusicData::get_album_strings(std::string artist)
+{
+	std::vector<std::string> albums;
+	TreeNode *temp = get_artist(artist);
+	if (temp)
+	{
+		albums = temp->album->get_strings();
+	}
+	return albums;
 }
