@@ -224,16 +224,32 @@ void InputBar::process_get()
 	if (artist != "")
 	{
 		std::vector<std::string> ss = mymusic.get_album_strings(artist);
-		mytable.update(ss);
-		for (std::string a : ss)
+		// add message concerning the state of the albums 
+		if (ss.size() == 0)
 		{
-			std::cout << a << '\t';
+			std::string none = "There are no albums by " + artist + " currently stored.";
+			ss.push_back(none);
 		}
+		else
+		{
+			std::string some = "Albums by " + artist + ":";
+			ss.insert(ss.begin(), some);
+		}
+		mytable.update(ss);
 	}
 	// otherwise, print a list of stored artists
 	else
 	{
 		std::vector<std::string> ss = mymusic.get_artist_strings();
+		// add message concerning the state of the ArtistTree
+		if (ss.size() == 0)
+		{
+			ss.push_back("There are no artists currently stored.");
+		}
+		else
+		{
+			ss.push_back("Artists currently stored:");
+		}
 		mytable.update(ss);
 	}
 }
