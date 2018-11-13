@@ -92,3 +92,25 @@ void ArtistTree::print_inorder()
 {
 	print_inorder(root);
 }
+
+void ArtistTree::strings_inorder(TreeNode* start)
+{
+	if (start)
+	{
+		strings_inorder(start->left);
+		artists.push_back(start->artist);
+		strings_inorder(start->right);
+	}
+}
+
+void ArtistTree::strings_inorder()
+{
+	strings_inorder(root);
+}
+
+std::vector<std::string> ArtistTree::get_strings()
+{
+	artists.clear();
+	strings_inorder(root);
+	return artists;
+}

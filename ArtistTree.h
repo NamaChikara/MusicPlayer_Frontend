@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include "AlbumList.h"
 
 class AlbumList;	// forward declare in order to have an AlbumList pointer
@@ -32,6 +33,7 @@ public:
 class ArtistTree {
 	friend class MusicData;
 	TreeNode *root;
+	std::vector<std::string> artists;	// for storage in call to strings_inorder/get_strings
 public:
 	ArtistTree();
 	ArtistTree(TreeNode*);
@@ -41,6 +43,11 @@ public:
 	TreeNode* find(std::string);	// find the TreeNode for a specified artist (if any)
 	void print_inorder(TreeNode*);	// if printing the subtree with argument as its base
 	void print_inorder();			// if printing the whole tree
+
+	// capability to return vector of artist names for graphics interface
+	void strings_inorder(TreeNode*);// if storing artist names for a subtree
+	void strings_inorder();			// if storing artist names for the whole tree
+	std::vector<std::string> get_strings();
 };
 
 #endif // !ARTISTTREE_H
