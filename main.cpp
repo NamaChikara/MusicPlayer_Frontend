@@ -10,15 +10,6 @@
 
 int main()
 {
-	// create example MusicData structure
-	MusicData mymusic1;
-	mymusic1.add_artist("Duran Jones");
-	mymusic1.add_album("Duran Jones", 2018, "Duran Jones and the Indications");
-	mymusic1.add_artist("DjM Trio");
-	mymusic1.add_album("DjM Trio", 2018, "Cave Art Pt. 2");
-	mymusic1.add_album("DjM Trio", 2014, "Cave Art");
-	mymusic1.add_album("DjM Trio", 2010, "The Intrigue");
-
 	sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
 
 	// Load font file for sf::Text objects
@@ -28,13 +19,9 @@ int main()
 	{
 		std::cerr << "Could not load " << font_file << " font file." << std::endl;
 	}
-
+	// load DisplayTable then use it to initialize InputBar
 	DisplayTable mytable{ font_file };
 	InputBar myinput{ font_file, mytable  };
-
-	std::vector<std::string> titles = { "Wish You Were Here",
-		"Dark Side Of The Moon", "Animals", "The Wall" };
-	mytable.update(titles);
 
 	while (window.isOpen())
 	{
@@ -47,11 +34,14 @@ int main()
 				window.close();
 				break;
 			case sf::Event::MouseButtonReleased:
+			// pass click location to InputBar to take action
 				if (event.key.code == sf::Mouse::Left)
+				// left click means information might have been entered
 				{
 					myinput.clicked(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
 				}
 				else if (event.key.code == sf::Mouse::Right)
+				// right click means input field might have been cleared
 				{
 					myinput.cleared(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
 				}
