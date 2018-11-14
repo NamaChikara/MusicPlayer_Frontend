@@ -20,12 +20,16 @@ public:
 
 private:
 	sf::Vector2f window_size;	// use to place Texts at bottom of window
+	sf::Font font;
 	float charsize = 20;	// how large text should be
 	float voffset = 10;		// vertical distance between text objects
 	float hoffset = 10;		// horizontal distance from side of window
+	bool display_on;		// if true, draw instructions; if false, do not draw
 
-	sf::RectangleShape display_button;	// click to toggle instructions
-	sf::Font font;
+	sf::RectangleShape display_rect;	// click to toggle instructions
+	sf::Text display_text;
+	std::string display = "Instructions On/Off";
+
 	std::vector<sf::Text> inst_texts;
 	std::vector<std::string> insts{
 		"Instructions for use:",
@@ -39,6 +43,7 @@ private:
 	};
 
 	void setup_texts();	// calculate where to place sf::Text objects
+	void setup_button();// calculate where to place display_rect/text
 };
 
 #endif Instructions_H
