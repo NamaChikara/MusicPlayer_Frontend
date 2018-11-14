@@ -23,8 +23,7 @@ class AlbumList {
 	friend class MusicData;
 	ListNode *head;
 	// capability to return vector of album names for graphics interface
-	std::vector<std::string> albums; // for storage in call to strings_inorder/get_strings
-	void strings_inorder();			
+	void strings_inorder(std::vector<std::string>&);			
 	std::vector<std::string> get_strings();
 public:
 	AlbumList();
