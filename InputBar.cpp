@@ -283,7 +283,7 @@ void InputBar::process_get()
 		}
 		else
 		{
-			ss.push_back("Artists currently stored:");
+			ss.insert(ss.begin(), "Artists currently stored:");
 		}
 		mytable.update(ss);
 	}
