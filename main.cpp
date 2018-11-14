@@ -46,6 +46,7 @@ int main()
 				// left click means information might have been entered
 				{
 					myinput.clicked(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
+					myinstructions.clicked(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
 				}
 				else if (event.key.code == sf::Mouse::Right)
 				// right click means input field might have been cleared
