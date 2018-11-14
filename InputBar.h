@@ -38,8 +38,13 @@ private:
 	sf::Font font;			// must load a font to draw Text objects
 	int charsize = 20;		// how large text should be
 	float rect_height = 50;	// how tall the RectangleShapes are
-	float hoffset = 5;		// horizontal offset of text within rectangle
-
+	float hoffset = 10;		// horizontal offset of text within rectangle
+	// how wide the RectangleShapes are
+	float artist_size = 300;
+	float album_size = 300;
+	float year_size = 100;
+	float set_size = 50;
+	float get_size = 50;
 	// initial string values for text objects
 	std::string artist_init = "artist";
 	std::string album_init = "album";
@@ -78,5 +83,4 @@ private:
 							//  all artists to mytable.
 };
 
-
-#endif InputBar_H
+#endif 

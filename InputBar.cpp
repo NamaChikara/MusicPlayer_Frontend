@@ -30,24 +30,34 @@ void InputBar::draw(sf::RenderTarget& target, sf::RenderStates) const
 
 void InputBar::place_rects()
 {
-	artist_rect.setSize(sf::Vector2f{ 200,rect_height });
+	artist_rect.setSize(sf::Vector2f{ artist_size,rect_height });
 	artist_rect.setFillColor(sf::Color::Blue);
+	artist_rect.setOutlineThickness(-2);
+	artist_rect.setOutlineColor(sf::Color());
 
-	album_rect.setSize(sf::Vector2f{ 200,rect_height });
+	album_rect.setSize(sf::Vector2f{ album_size,rect_height });
 	album_rect.setPosition(topRight(artist_rect));
 	album_rect.setFillColor(sf::Color::Red);
+	album_rect.setOutlineThickness(-2);
+	album_rect.setOutlineColor(sf::Color());
 
-	year_rect.setSize(sf::Vector2f{ 100,rect_height });
+	year_rect.setSize(sf::Vector2f{ year_size,rect_height });
 	year_rect.setPosition(topRight(album_rect));
 	year_rect.setFillColor(sf::Color::Blue);
+	year_rect.setOutlineThickness(-2);
+	year_rect.setOutlineColor(sf::Color());
 
-	set_rect.setSize(sf::Vector2f{ 50,rect_height });
+	set_rect.setSize(sf::Vector2f{ set_size,rect_height });
 	set_rect.setPosition(topRight(year_rect));
 	set_rect.setFillColor(sf::Color::Red);
+	set_rect.setOutlineThickness(-2);
+	set_rect.setOutlineColor(sf::Color());
 
-	get_rect.setSize(sf::Vector2f{ 50,rect_height });
+	get_rect.setSize(sf::Vector2f{ get_size,rect_height });
 	get_rect.setPosition(topRight(set_rect));
 	get_rect.setFillColor(sf::Color::Blue);
+	get_rect.setOutlineThickness(-2);
+	get_rect.setOutlineColor(sf::Color());
 }
 
 void InputBar::setup_texts()
@@ -84,8 +94,11 @@ void InputBar::text_locations()
 	artist_text.setPosition(artist_rect.getPosition() + sf::Vector2f(hoffset, voffset));
 	album_text.setPosition(album_rect.getPosition() + sf::Vector2f(hoffset, voffset));
 	year_text.setPosition(year_rect.getPosition() + sf::Vector2f(hoffset, voffset));
-	set_text.setPosition(set_rect.getPosition() + sf::Vector2f(hoffset, voffset));
-	get_text.setPosition(get_rect.getPosition() + sf::Vector2f(hoffset, voffset));
+	// center the set and get texts within their RectangleShapes
+	float set_hoffset = (set_rect.getSize().x - set_text.getGlobalBounds().width) / 2;
+	set_text.setPosition(set_rect.getPosition() + sf::Vector2f(set_hoffset, voffset));
+	float get_hoffset = (get_rect.getSize().x - get_text.getGlobalBounds().width) / 2;
+	get_text.setPosition(get_rect.getPosition() + sf::Vector2f(get_hoffset, voffset));
 }
 
 sf::Vector2f InputBar::bottom_left()
