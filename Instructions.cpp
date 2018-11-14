@@ -10,27 +10,25 @@ Instructions::Instructions(std::string font_file, sf::Vector2f window_size)
 
 void Instructions::setup_texts()
 {
-	inst0_text = sf::Text(inst0, font, charsize);
-	inst1_text = sf::Text(inst1, font, charsize);
-	inst2_text = sf::Text(inst2, font, charsize);
-	inst3_text = sf::Text(inst3, font, charsize);
+	for (std::string str : insts)
+	{
+		inst_texts.push_back(sf::Text(str, font, charsize));
+	}
 
-	inst0_text.setFillColor(sf::Color::White);
-	inst1_text.setFillColor(sf::Color::White);
-	inst2_text.setFillColor(sf::Color::White);
-	inst3_text.setFillColor(sf::Color::White);
-
-	inst3_text.setPosition(sf::Vector2f(hoffset, window_size.y - charsize - voffset));
-	inst2_text.setPosition(sf::Vector2f(hoffset, inst3_text.getPosition().y - charsize - voffset));
-	inst1_text.setPosition(sf::Vector2f(hoffset, inst2_text.getPosition().y - charsize - voffset));
-	inst0_text.setPosition(sf::Vector2f(hoffset, inst1_text.getPosition().y - charsize - voffset));
+	sf::Vector2f offset{ hoffset, window_size.y - charsize - voffset };
+	for (size_t i = 0; i < inst_texts.size(); ++i)
+	{
+		inst_texts[inst_texts.size() - 1 - i].setFillColor(sf::Color::White);
+		inst_texts[inst_texts.size() - 1 - i].setPosition(offset);
+		offset = offset - sf::Vector2f(0, charsize + voffset);
+	}
 }
 
 void Instructions::draw(sf::RenderTarget& target, sf::RenderStates) const
 {
 	//target.draw(inst_rect);
-	target.draw(inst0_text);
-	target.draw(inst1_text);
-	target.draw(inst2_text);
-	target.draw(inst3_text);
+	for (sf::Text text : inst_texts)
+	{
+		target.draw(text);
+	}
 }

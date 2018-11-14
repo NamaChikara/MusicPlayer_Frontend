@@ -8,6 +8,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <vector>
 
 class Instructions : public sf::Drawable
 {
@@ -23,21 +24,19 @@ private:
 	float voffset = 10;		// vertical distance between text objects
 	float hoffset = 10;		// horizontal distance from side of window
 
-	sf::RectangleShape inst_rect;	// where the text will be written
+	sf::RectangleShape display_button;	// click to toggle instructions
 	sf::Font font;
-
-	sf::Text inst0_text;
-	sf::Text inst1_text;
-	sf::Text inst2_text;
-	sf::Text inst3_text;
-
-	std::string inst0 = "Instructions for use:";
-	std::string inst1 = "-> right click on a text field to clear contents, left click to "
-		"focus text input, tab to move between fields";
-	std::string inst2 = "-> click 'set': if album field is blank, the artist is added to list "
-		"of artists, if album is present, album is added to that artist's list of albums";
-	std::string inst3 = "-> click 'get': if an artist name is present, attempts to retrieve a list "
-		"of that artist's abums; if no artist name, prints a list of stored artists";
+	std::vector<sf::Text> inst_texts;
+	std::vector<std::string> insts{
+		"Instructions for use:",
+		"-> right click to clear contents, left click to focus input, tab to move between fields",
+		"-> click 'set':",
+		"   a) album field is empty: the artist is added to list of artists",
+		"   b) album field nonempty: adds album to the artist's list of albums",
+		"-> click 'get':",
+		"   a) artist field is empty: prints a list of stored artists",
+		"   b) artist field nonempty: prints a list of stored albums for that artist"
+	};
 
 	void setup_texts();	// calculate where to place sf::Text objects
 };
