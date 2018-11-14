@@ -115,18 +115,21 @@ void InputBar::clicked(sf::Vector2f click)
 
 void InputBar::cleared(sf::Vector2f click)
 {
-	// if the click is on a rect, clear the appropriate text object
+	// if the click is on a rect, clear the appropriate text object and focus input
 	if (clickRect(artist_rect, click))
 	{
 		artist_text.setString("");
+		artist_ent = true;
 	}
 	else if (clickRect(album_rect, click))
 	{
 		album_text.setString("");
+		album_ent = true;
 	}
 	else if (clickRect(year_rect, click))
 	{
 		year_text.setString("");
+		year_ent = true;
 	}
 }
 
@@ -165,7 +168,26 @@ void InputBar::input(char c)
 			}
 		}
 	}
-	else
+	// if tab was pressed, move between input fields
+	else if (c == '\t')
+	{
+		if (artist_ent)
+		{
+			artist_ent = false;
+			album_ent = true;
+		}
+		else if (album_ent)
+		{
+			album_ent = false;
+			year_ent = true;
+		}
+		else if (year_ent)
+		{
+			year_ent = false;
+			artist_ent = true;
+		}
+	}
+	else 
 	{
 		// add character to the active field
 		if (artist_ent)
