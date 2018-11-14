@@ -12,7 +12,7 @@ void DisplayTable::update(std::vector<std::string> &labels)
 	rects.clear();
 	for (int i = 0; i < labels.size(); ++i)
 	{
-		rects.push_back(new sf::RectangleShape(sf::Vector2f(200, 50)));
+		rects.push_back(new sf::RectangleShape(sf::Vector2f(rect_width, rect_height)));
 		rects[i]->setFillColor(sf::Color::Black);
 		if (i == 0)
 		{
@@ -24,7 +24,7 @@ void DisplayTable::update(std::vector<std::string> &labels)
 		}
 		texts.push_back(new sf::Text(labels[i], font, charsize));
 		texts[i]->setFillColor(sf::Color::White);
-		texts[i]->setPosition(rects[i]->getPosition());
+		texts[i]->setPosition(rects[i]->getPosition() + sf::Vector2f(hoffset, voffset));
 	}
 }
 
