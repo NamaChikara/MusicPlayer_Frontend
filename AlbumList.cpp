@@ -55,14 +55,24 @@ void AlbumList::print()
 	}
 }
 
-void AlbumList::strings_inorder()
+void AlbumList::strings_inorder(std::vector<std::string> &albums)
 {
 	if (head)
 	{
 		ListNode *temp = head;
+		std::string current;
 		while (temp)
 		{
-			albums.push_back(temp->title);
+			// include year if a year was specified
+			if (temp->year != 0)
+			{
+				current = temp->title + " (" + std::to_string(temp->year) + ")";
+			}
+			else
+			{
+				current = temp->title;
+			}
+			albums.push_back(current);
 			temp = temp->next;
 		}
 	}
@@ -70,7 +80,7 @@ void AlbumList::strings_inorder()
 
 std::vector<std::string> AlbumList::get_strings()
 {
-	albums.clear();		// clear the storage vector for new call to get_strings()
-	strings_inorder();	// update albums
+	std::vector<std::string> albums;
+	strings_inorder(albums);	// update albums
 	return albums;
 }
