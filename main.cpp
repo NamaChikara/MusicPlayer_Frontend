@@ -7,10 +7,13 @@
 #include "GraphicsHelper.h"
 #include "InputBar.h"
 #include "DisplayTable.h"
+#include "Instructions.h"
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 800), "Music Library Data", sf::Style::Titlebar | sf::Style::Close);
+	float width = 800;
+	float height = 800;
+	sf::RenderWindow window(sf::VideoMode(width, height), "Music Library Data", sf::Style::Titlebar | sf::Style::Close);
 
 	// Load font file for sf::Text objects
 	std::string font_file = "SourceSansPro.otf";	// font for Text Objects
@@ -19,9 +22,13 @@ int main()
 	{
 		std::cerr << "Could not load " << font_file << " font file." << std::endl;
 	}
+
 	// load DisplayTable then use it to initialize InputBar
 	DisplayTable mytable{ font_file };
 	InputBar myinput{ font_file, mytable  };
+
+	// load instructions for the user
+	Instructions myinstructions{ font_file, sf::Vector2f(width, height) };
 
 	while (window.isOpen())
 	{
@@ -58,6 +65,7 @@ int main()
 		window.clear();
 
 		myinput.draw(window);
+		myinstructions.draw(window);
 
 		window.display();
 	}
