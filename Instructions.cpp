@@ -43,6 +43,15 @@ void Instructions::setup_button()
 	display_rect.setOutlineColor(sf::Color::White);
 }
 
+void Instructions::clicked(sf::Vector2f click)
+{
+	// if click is on display_rect, toggle truth of display_on
+	if (clickRect(display_rect, click))
+	{
+		display_on = !display_on;
+	}
+}
+
 void Instructions::draw(sf::RenderTarget& target, sf::RenderStates) const
 {
 	target.draw(display_rect);

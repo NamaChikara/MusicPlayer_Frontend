@@ -9,6 +9,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
+#include "GraphicsHelper.h"
 
 class Instructions : public sf::Drawable
 {
@@ -18,6 +19,8 @@ public:
 	// override sf::Drawable's pure virtual function
 	virtual void draw(sf::RenderTarget&, sf::RenderStates = sf::RenderStates()) const;
 
+	// check if display_rect was clicked; toggle value of display_on if so
+	void clicked(sf::Vector2f);	
 private:
 	sf::Vector2f window_size;	// use to place Texts at bottom of window
 	sf::Font font;
