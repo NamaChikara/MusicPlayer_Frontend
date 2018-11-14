@@ -10,7 +10,7 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(800, 800), "Music Library Data", sf::Style::Titlebar | sf::Style::Close);
 
 	// Load font file for sf::Text objects
 	std::string font_file = "SourceSansPro.otf";	// font for Text Objects
@@ -55,7 +55,6 @@ int main()
 				break;
 			}
 		}
-
 		window.clear();
 
 		myinput.draw(window);
